@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My chat</title>
+  <style>
+    *{
+      box-sizing: border-box;
+      font-size: system-ui;
+      margin: 0;
+    }
+
+    body, html{
+      height: 100%;
+    }
+
+    .wrapper{
+      display: grid;
+      place-content: center;
+      height: 100%;
+    }
+
+    .chat{
+      width: 300px;
+      height: 500px;
+      border: 2px solid grey;
+      border-radius: 20px;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 10px;
+    }
+
+    .chat > *{
+      width: 100%;
+    }
+
+    li{
+      list-style-type: none;
+    }
+
+    li:nth-child(even){
+      background-color: rgb(192, 192, 192);
+    }
+
+    form{
+      display: flex;
+      justify-content: space-around;
+      position: absolute;
+      bottom: 10px;
+    }
+
+    
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <section class="chat">
+      <form id="form" action="">
+        <input type="text" id="message" placeholder="Escribe aqui tu mensaje">
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </div>
+  <script type="module">
+    import {io} from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js"
+    
+    const socket = io()
+
+    const form = document.querySelector("#form")
+    const input = document.querySelector("#message")
+
+    socket.on("chat-message", (msg) => {
+      form.insertAdjacentHTML("beforebegin", `<li>${msg}</li>`)
+    })
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault()
+      if(message.value){
+        socket.emit("chat-message", message.value)
+        message.value = ""
+      }
+    })
+  </script>
+</body>
+</html>
