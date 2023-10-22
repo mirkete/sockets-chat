@@ -6,6 +6,7 @@
 
 body, html{
   height: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .wrapper{
@@ -22,8 +23,8 @@ body, html{
 .chat{
   width: 300px;
   height: 500px;
-  border: 2px solid grey;
-  border-radius: 20px;
+  box-shadow: 0px 0px 5px 2px grey;
+  border-radius: 10px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -37,20 +38,46 @@ body, html{
 
 .messages-container{
   flex: 1;
+  display: flex;
+  flex-flow: column nowrap;
   overflow: auto;
+  border-bottom: 2px solid grey;
+  gap: 5px;
+  padding: 5px;
 }
 
 li{
   list-style-type: none;
 }
 
-li:nth-child(even){
-  background-color: rgb(192, 192, 192);
-}
-
 form{
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  gap:5px;
+  padding: 5px;
   height: 30px;
 }
 
+#message{
+  border:none;
+  flex: 1;
+  padding: 10px;
+  outline: none;
+}
+
+.single-message{
+  color: white;
+  padding: 10px;
+  border-radius: 10px 0px 10px 10px;
+}
+
+.own-message{
+  align-self: flex-end;
+  background-color: green;
+}
+
+.external-message{
+  align-self: flex-start;
+  background-color: lightgrey;
+}
