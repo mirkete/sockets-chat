@@ -22,7 +22,6 @@ logUser()
     const messagesContainer = document.querySelector(".messages-container")
 
     socket.on("chat-message", (msg) => {
-      console.log({here:msg.username, out:username})
       const messageClass = msg.username === username ? "own-message" : "external-message"
       messagesContainer.insertAdjacentHTML("beforeend", `<li class="single-message ${messageClass}">${msg.username}:${msg.message}</li>`)
       messagesContainer.scrollTop = messagesContainer.scrollHeight
@@ -31,7 +30,7 @@ logUser()
     form.addEventListener("submit", (e) => {
       e.preventDefault()
       if (message.value) {
-        socket.emit("chat-message", {message: message.value, username })
+        socket.emit("chat-message", { message: message.value, username })
         message.value = ""
       }
     })
