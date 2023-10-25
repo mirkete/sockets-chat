@@ -31,6 +31,7 @@ body, html{
   align-items: center;
   gap: 	10px;
   padding: 10px;
+  position: relative;
 }
 
 .chat > *{
@@ -117,4 +118,46 @@ form{
   width: 20px;
   height: 20px;
   transform: rotate(45deg);
+}
+
+#user-count-container{
+  display: flex;
+  position: absolute;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  top: -35px;
+  margin: 10px 0px 0px 10px;
+  text-align: right;
+}
+
+.active-dot{
+  width: 15px;
+  height: 15px;
+  background: rgb(92, 239, 92);
+  border-radius: 50%;
+  position: relative;
+}
+
+.active-dot::before{
+  position: absolute;
+  content: "";
+  width: 15px;
+  left: 0;
+  height: 15px;
+  border-radius: 50%;
+  background: rgb(92, 239, 92);
+  animation: circle-intermitent 1s ease infinite;
+}
+
+@keyframes circle-intermitent{
+  from{
+    opacity: .7;
+  }
+
+  to{
+    opacity: 0;
+    transform: scale(200%);
+  }
 }

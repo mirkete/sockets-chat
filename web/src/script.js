@@ -23,8 +23,13 @@ logUser()
 
     socket.on("chat-message", (msg) => {
       const messageClass = msg.username === username ? "own-message" : "external-message"
-      messagesContainer.insertAdjacentHTML("beforeend", `<li class="single-message ${messageClass}">${msg.username}:${msg.message}</li>`)
+      messagesContainer.insertAdjacentHTML("beforeend", `<li class="single-message ${messageClass}">${msg.username}: ${msg.message}</li>`)
       messagesContainer.scrollTop = messagesContainer.scrollHeight
+    })
+
+    const userCount = document.getElementById("user-count")
+    socket.on("user-count", (users) => {
+      userCount.innerHTML = "Currently active: " + users
     })
 
     form.addEventListener("submit", (e) => {
