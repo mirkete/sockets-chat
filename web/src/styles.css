@@ -71,8 +71,11 @@ form{
 
 .single-message{
   color: white;
+  max-width: 90%;
   padding: 10px;
   border-radius: 10px 0px 10px 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .own-message{
@@ -112,6 +115,7 @@ form{
   background:transparent;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 .send-button > svg{
