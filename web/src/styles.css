@@ -76,6 +76,7 @@ form{
   border-radius: 10px 0px 10px 10px;
   overflow: hidden;
   text-overflow: ellipsis;
+  flex-shrink: 0;
 }
 
 .own-message{

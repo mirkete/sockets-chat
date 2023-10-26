@@ -1,8 +1,8 @@
-[✅] Implementar user-count para el cliente
+[✔️] Implementar user-count para el cliente
 
-[✅] Implementar MVC Con el siguiente formato:
+[✔️] Implementar MVC Con el siguiente formato:
    mensaje -> (CONTROLLER) chat-message -> (MODEL) chat-message 
 
-[ ] Mejorar diseño del inicio de sesion
+[✔️] Mejorar diseño del inicio de sesion
 
 [ ] Conectar base de datos y guardar mensajes
