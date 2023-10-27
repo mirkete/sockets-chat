@@ -1,15 +1,14 @@
-import { UsersController } from "../controller/UsersController.js"
+import { MessagesController } from '../controller/MessagesController.js'
 
 export function manageSockets ({ server, model }) {
+  const messagesModelController = new MessagesController({ server, model })
 
-  const usersController = new UsersController({ server, model })
-
-  server.on("connection", (socket) => {
+  server.on('connection', (socket) => {
     // usersController.userConnection()
-    usersController.userConnection()
+    messagesModelController.userConnection(socket)
 
-    socket.on("logged-in", usersController.loggedIn(socket))
-    socket.on("chat-message", usersController.chatMessage(socket))
-    socket.on("disconnecting", usersController.userDisconnection(socket))
+    socket.on('logged-in', messagesModelController.loggedIn(socket))
+    socket.on('chat-message', messagesModelController.chatMessage(socket))
+    socket.on('disconnecting', messagesModelController.userDisconnection(socket))
   })
 }

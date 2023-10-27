@@ -5,4 +5,4 @@
 
 [✔️] Mejorar diseño del inicio de sesion
 
-[ ] Conectar base de datos y guardar mensajes
+[✔️] Conectar base de datos y guardar mensajes
