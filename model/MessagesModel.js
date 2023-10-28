@@ -16,16 +16,14 @@ export class MessagesModel {
     let result
     try {
       result = await connection.execute(
-        'SELECT user, message FROM message ' +
+        'SELECT user, message, timestamp FROM message ' +
         'ORDER BY timestamp'
       )
     } catch (e) {
       console.error(e)
     }
-    console.log(result[0])
-    result[0].forEach(({ user: username, message }, i) => {
-      socket.emit('chat-message', { message, username })
-      console.log('emitted ' + i)
+    result[0].forEach(({ user: username, message, timestamp }) => {
+      socket.emit('chat-message', { message, username, timestamp })
     })
     this.server.emit('user-count', this.server.engine.clientsCount)
   }
@@ -43,8 +41,11 @@ export class MessagesModel {
         'VALUES (?, ?)',
         [data.username, data.message]
       ).then(() => {
-        this.server.to('chat-room').emit('chat-message', { message: data.message, username: data.username })
+        this.server.to('chat-room').emit('chat-message', { message: data.message, username: data.username, timestamp: Date.now() })
       })
+        .catch((e) => {
+          console.error(e)
+        })
     }
   }
 

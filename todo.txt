@@ -6,3 +6,5 @@
 [✔️] Mejorar diseño del inicio de sesion
 
 [✔️] Conectar base de datos y guardar mensajes
+
+[ ] Crear ID en el login y guardar y consultar con ese ID

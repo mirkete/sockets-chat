@@ -72,23 +72,33 @@ form{
 .single-message{
   color: white;
   max-width: 90%;
-  padding: 10px;
-  border-radius: 10px 0px 10px 10px;
+  padding: 10px 10px 15px 10px;
   overflow: hidden;
   text-overflow: ellipsis;
   flex-shrink: 0;
+  position: relative;
 }
 
 .own-message{
   align-self: flex-end;
   background-color: green;
   animation: own-message .15s ease;
+  border-radius: 10px 0px 10px 10px;
 }
 
 .external-message{
   align-self: flex-start;
   background-color: lightgrey;
   animation: external-message .15s ease;
+  border-radius: 0px 10px 10px 10px;
+}
+
+.message-timestamp{
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  font-size: 8px;
+  opacity: .7;
 }
 
 @keyframes own-message{
