@@ -1,9 +1,9 @@
 export function login () {
-  return (req, res, next) => {
-    if (res.locals.session) {
-      next()
-    } else {
-      res.send('not logged')
+  return (socket, next) => {
+    if (socket.handshake.auth.username) {
+      socket.join('chat-room')
+      return next()
     }
+    return next(new Error('Unauthorized. Please login'))
   }
 }

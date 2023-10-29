@@ -28,20 +28,15 @@ export class MessagesModel {
     this.server.emit('user-count', this.server.engine.clientsCount)
   }
 
-  loggedIn (socket) {
-    return () => {
-      socket.join('chat-room')
-    }
-  }
-
-  chatMessage () {
+  chatMessage (socket) {
     return (data) => {
+      const username = socket.handshake.auth.username
       connection.query(
         'INSERT INTO message (user, message) ' +
         'VALUES (?, ?)',
         [data.username, data.message]
       ).then(() => {
-        this.server.to('chat-room').emit('chat-message', { message: data.message, username: data.username, timestamp: Date.now() })
+        this.server.to('chat-room').emit('chat-message', { message: data.message, username, timestamp: Date.now() })
       })
         .catch((e) => {
           console.error(e)
